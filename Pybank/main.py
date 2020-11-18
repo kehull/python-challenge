@@ -4,7 +4,6 @@ import csv
 # Path to collect data from the Resources folder
 bank_csv = os.path.join( 'Resources', 'budget_data.csv')
 
-    #Set up code to process final results
 #define the summary function, which will iterate through csvreader
 def summary(csvreader):
     #establish variables with global scope outside of the loop
@@ -35,22 +34,24 @@ def summary(csvreader):
                 Greatest_Decrease_Date = (row[0]) #store the date from the current row as a variable so it can be called later in a print statement
         if len(Difference)>=2: #make sure therea re enought items in the Difference list to perform the math functions inside of this if statement
             Avg_Change = sum(Difference)/len(Difference) #perform calculation to determine the average change from month to month
-
-    #Set up code to process final results to terminal
-    print(f"Financial Analysis")
-    print(f"----------------------------")
-    print(f"Total Months: {Total_Months}")
-    print(f"Total: ${Total}")
-    print(f"Average Change: ${str(round(Avg_Change,2))}")
-    print(f"Greatest Increase in Profits: {Greatest_Increase_Date} (${Greatest_Increase})")
-    print(f"Greatest Decrease in Profits: {Greatest_Decrease_Date} (${Greatest_Decrease})")
-
-#still need to write the code to create a txt file containing all of the print statements in the previous block
-
-# Read in the CSV file
-with open(bank_csv, 'r') as csvfile:
-    # Split the data on commas
-    csvreader = csv.reader(csvfile, delimiter=',')
-    header = next(csvreader)
-    summary(csvreader)
+#create summary table and output as a txt file
+    output_path = os.path.join("Analysis", "pybank_summary.txt") #path for where to save the document
+    with open (output_path,'w', newline='') as datafile:
+        writer = csv.writer(datafile)
+        writer.writerow([(f"Financial Analysis")])
+        writer.writerow([(f"----------------------------")])
+        writer.writerow([(f"Total Months: {Total_Months}")])
+        writer.writerow([(f"Total: ${Total}")])
+        writer.writerow([(f"Average Change: ${str(round(Avg_Change,2))}")])
+        writer.writerow([(f"Greatest Increase in Profits: {Greatest_Increase_Date} (${Greatest_Increase})")])
+        writer.writerow([(f"Greatest Decrease in Profits: {Greatest_Decrease_Date} (${Greatest_Decrease})")])
+    print(writer)
    
+#open the pybank_summary.txt file and read it into the terminal
+file = os.path.join("Analysis", "pybank_summary.txt")#path to find the document
+with open(file, 'r') as text:
+    print(text)
+    lines = text.read()
+    print(lines)
+
+
