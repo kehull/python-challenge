@@ -9,7 +9,6 @@ with open(election_csv) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
     next(csvreader)
 
-#def summary(csvreader):
     #establish variables with global scope outside of the loop
     Total_Votes = 0
     Candidates = []
