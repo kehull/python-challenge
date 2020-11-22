@@ -1,6 +1,6 @@
 Paragraph_Analysis
 -------------------------
-Approximate Word Count: 0
-Approximate Sentence Count: 0
-Average Letter Count: 0
-Average Sentence Length:0
+Approximate Word Count: 83
+Approximate Sentence Count: 5
+Average Letter Count: 6.1
+Average Sentence Length: 16.6
