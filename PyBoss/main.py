@@ -1,5 +1,6 @@
 import os
 import csv
+from us_state_abbrev import us_state_abbrev
 
 employee_data = os.path.join("Resources", "employee_data.csv")
 
@@ -22,15 +23,18 @@ with open(employee_data, newline='') as csvfile:
         Full_Name = str(row[1]).split(' ')
         First_Name.append(Full_Name[0])
         Last_Name.append(Full_Name[1])
-        # Format birthdate adn add to DOB
+        # Format birthdate and add to DOB list
         Split_DOB = str(row[2]).split('-')
         DOB.append(f'{Split_DOB[1]}/{Split_DOB[2]}/{Split_DOB[0]}')
-        # Obscure first five digits of string and add to SSN
+        # Obscure first five digits of SSN and add to SSN list
         Split_SSN =str(row[3]).split('-')
         SSN.append(f'***-**-{Split_SSN[2]}') 
-        # Add State
-        State.append(row[4]) #still working on this
-
+        # Read external dictionary of state abbreviations into the code, then search within the keys of that dictionary for the state's full name and return the value, which is the state's abbreviation.
+        State_Name=str(row[4])
+        for long_name, abbrev in us_state_abbrev.items():
+            if State_Name in us_state_abbrev:
+                State_Name=abbrev
+                State.append(abbrev)
 
 # Zip lists together
 cleaned_csv = zip(Emp_ID, First_Name, Last_Name, DOB, SSN, State)
