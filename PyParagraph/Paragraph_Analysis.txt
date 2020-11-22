@@ -1,0 +1,6 @@
+Paragraph_Analysis
+-------------------------
+Approximate Word Count: 0
+Approximate Sentence Count: 0
+Average Letter Count: 0
+Average Sentence Length:0
